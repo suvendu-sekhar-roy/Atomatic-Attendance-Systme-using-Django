@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Admin Registration</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+</head>
+
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg py-3">
+    
+    <div class="container">
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item ms-3" >
+                        <i class="fa-solid fa-house me-1"></i>
+                    <a href="/" style="font-size: 20px">Back to Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="login-wrapper">
+<div class="register-card">
+
+    <div class="text-center">
+
+        <i class="fa-solid fa-user-plus page-icon"></i>
+
+        <h1 class="title">
+            Admin Registration
+        </h1>
+
+    </div>
+
+    <form method="post">
+    {% csrf_token %}
+
+    <input type="text"
+           name="admin_name"
+           placeholder="Username">
+
+    <input type="email"
+           name="admin_email"
+           placeholder="Email">
+
+    <input type="password"
+           name="password"
+           placeholder="Password">
+
+    <button type="submit">
+        Register
+    </button>
+</form>
+</div>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show">
+            {{ message }}
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+</body>
+</html>

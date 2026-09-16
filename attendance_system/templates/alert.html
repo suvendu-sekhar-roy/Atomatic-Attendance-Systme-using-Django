@@ -1,0 +1,43 @@
+{% if messages %}
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    {% for message in messages %}
+    <div class="toast show text-white
+        {% if message.tags == 'success' %}bg-success{% endif %}
+        {% if message.tags == 'error' %}bg-danger{% endif %}
+        "
+        role="alert">
+
+        <div class="toast-header">
+            <strong class="me-auto">Message</strong>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+        </div>
+
+        <div class="toast-body">
+            {{ message }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+    {% endif %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.toast').forEach(function(toast) {
+
+        // Auto dismiss after 3 seconds
+        setTimeout(function () {
+            toast.classList.remove('show');
+            toast.classList.add('hide');
+
+            // Remove from DOM after fade out
+            setTimeout(function () {
+                toast.remove();
+            }, 500);
+        }, 3000);
+
+    });
+});
+</script>

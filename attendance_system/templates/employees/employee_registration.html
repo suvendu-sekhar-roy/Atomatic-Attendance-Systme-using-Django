@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Employee Registration</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+</head>
+
+<body>
+{% include 'alert.html' %}
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg py-3">
+    
+    <div class="container">
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item ms-3" >
+                        <i class="fa-solid fa-house me-1"></i>
+                    <a href="/" style="font-size: 20px">Back to Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="login-wrapper">
+<div class="register-card">
+
+    <div class="text-center">
+
+        <i class="fa-solid fa-user-plus page-icon"></i>
+
+        <h1 class="title">
+            Employee Registration
+        </h1>
+
+    </div>
+
+    <form method="POST"
+          enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    Full Name
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="fullname"
+                       placeholder="Enter Full Name"
+                        required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">
+                    Employee ID
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="employee_id"
+                       placeholder="EMP001"
+                        required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Department
+                </label>
+
+                <select class="form-select"
+                        name="department"
+                        required>
+
+                    <option>
+                        Choose Department
+                    </option>
+
+                    <option>HR</option>
+                    <option>Finance</option>
+                    <option>Engineering</option>
+                    <option>IT Support</option>
+                    <option>Operations</option>
+
+                </select>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Designation
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="designation"
+                       placeholder="Software Engineer"
+                        required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Phone Number
+                </label>
+
+                <input type="tel"
+                       class="form-control"
+                       name="phone"
+                        required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Email
+                </label>
+
+                <input type="email"
+                       class="form-control"
+                       name="email"
+                        required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Password
+                </label>
+
+                <input type="password"
+                       class="form-control"
+                       name="password"
+                        required>
+
+            </div>
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    Confirm Password
+                </label>
+
+                <input type="password"
+                       class="form-control"
+                       name="confirm_password"
+                        required>
+
+            </div>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Upload Profile Picture
+            </label>
+
+            <input
+                type="file"
+                class="form-control"
+                accept=".jpg,.jpeg,.png"
+                name="profile_picture"
+                required>
+
+        </div>
+
+        <div class="text-center mb-4">
+
+            <small class="upload-note">
+
+                Please ensure the uploaded image filename
+                matches the Employee ID.
+
+                <br>
+                Accepted formats:
+                JPG / JPEG / PNG
+
+            </small>
+
+        </div>
+
+        <button
+            type="submit"
+            class="button">
+            <i class="fa-solid fa-user-plus me-2"></i>
+            Register Employee
+        </button>
+
+        <div class="text-center mt-4" style="font-size: 25px">
+            Already registered? Click <a href="/employees/login">here</a> to
+          LogIn.
+        </div>
+    </form>
+</div>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show">
+            {{ message }}
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+</body>
+</html>
