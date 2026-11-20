@@ -41,11 +41,7 @@ def recognize_faces(frame):
             matches.append({
                 "employee": best_employee,
                 "recognized": True,
-                "bbox": (
-                    face.bbox
-                    .astype(int)
-                    .tolist()
-                ),
+                "bbox": (face.bbox.astype(int).tolist()),
                 "similarity": round(float(best_similarity), 3)
             })
             print(f"Matched: " f"{best_employee.employee_id} " f"({best_similarity:.3f})")
@@ -56,11 +52,7 @@ def recognize_faces(frame):
             matches.append({
                 "employee": None,
                 "recognized": False,
-                "bbox": (
-                    face.bbox
-                    .astype(int)
-                    .tolist()
-                ),
+                "bbox": (face.bbox.astype(int).tolist()),
                 "similarity": round(float(best_similarity), 3)
             })
 

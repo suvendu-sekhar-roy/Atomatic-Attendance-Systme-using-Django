@@ -11,7 +11,8 @@ from django.http import HttpResponse
 from attendance.models import Attendance
 from employees.models import Employee
 from django.shortcuts import get_object_or_404
-#import pandas as pd
+import pandas as pd
+
 # Create your views here.
 
 employees = Employee.objects.all()

@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def process_checkin(employee):
     today = timezone.localdate()
-    attendance, _ = (
+    attendance, _ = (    #get_or_create returns 2 values. _ is for the boolean - created or not
         Attendance.objects.get_or_create(
             employee=employee,
             attendance_date=today

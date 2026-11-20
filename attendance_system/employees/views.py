@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import check_password
 from django.utils import timezone
 from datetime import date
-#import pandas as pd
+import pandas as pd
 from django.http import HttpResponse
 from .models import Employee
 import cv2
@@ -19,7 +19,7 @@ face_app = FaceAnalysis(
     providers=['CPUExecutionProvider']
 )
 face_app.prepare(
-  #  ctx_id=0,
+    ctx_id=0, #Context id , magorly depending on the device you are using. 0 for CPU, 1 for GPU
     det_size=(640, 640)
 )
 
