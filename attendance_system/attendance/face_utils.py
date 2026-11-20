@@ -24,7 +24,7 @@ def recognize_faces(frame):
                 employee.face_encoding,
                 dtype=np.float32
             )
-
+            #Similarity search
             similarity = (
                 np.dot(current_embedding,db_embedding)
                 /
